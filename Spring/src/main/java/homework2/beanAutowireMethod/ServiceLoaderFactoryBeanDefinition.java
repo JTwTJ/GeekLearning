@@ -1,5 +1,7 @@
-package homework2;
+package homework2.beanAutowireMethod;
 
+import homework2.BeanServiceLoaderFactoryBean;
+import homework2.DefaultBeanFactory;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

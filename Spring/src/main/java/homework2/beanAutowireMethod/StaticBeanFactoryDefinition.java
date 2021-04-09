@@ -1,5 +1,7 @@
-package homework2;
+package homework2.beanAutowireMethod;
 
+import homework2.BeanProperties;
+import homework2.StaticBeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**

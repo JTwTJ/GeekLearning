@@ -1,5 +1,6 @@
-package homework2;
+package homework2.beanAutowireMethod;
 
+import homework2.BeanProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
