@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <beans>
+        <bean id="bean" class="homework2.BeanProperties">
+            <constructor-arg name="age" value="24" type="java.lang.Integer"/>
+            <constructor-arg name="gender" value="男" type="java.lang.String"/>
+            <constructor-arg name="name" value="蒋文涛" type="java.lang.String"/>
+        </bean>
+    </beans>
+</beans>

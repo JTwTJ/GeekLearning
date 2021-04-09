@@ -3,7 +3,7 @@ package homework1;
 import java.lang.reflect.Proxy;
 
 /**
- * Java动态代理实现AOP demo
+ * 使 Java 里的动态代理，实现一个简单的 AOP。
  *
  * @author jiangwentao
  * @date 2021/4/9
