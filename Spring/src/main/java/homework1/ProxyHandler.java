@@ -24,7 +24,8 @@ public class ProxyHandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         before();
-        Object invoke = method.invoke(obj, args);//注意这里用obj不用proxy，proxy是代理对象，obj是真实对象
+        //注意这里用obj不用proxy，proxy是代理对象，obj是真实对象
+        Object invoke = method.invoke(obj, args);
         after();
         return invoke;
     }

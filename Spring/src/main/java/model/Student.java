@@ -18,7 +18,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Student implements Serializable, BeanNameAware, ApplicationContextAware, BeanFactoryAware {
+public class Student implements Serializable, BeanNameAware, BeanFactoryAware, ApplicationContextAware {
 
 
     private int id;

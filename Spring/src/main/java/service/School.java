@@ -10,7 +10,8 @@ import javax.annotation.Resource;
 @Data
 public class School implements ISchool {
     
-    // Resource 
+    // Resource
+    //required true-如果不存在注入类则启动失败 false-不存在也可以启动
     @Autowired(required = true) //primary
     Klass class1;
     
