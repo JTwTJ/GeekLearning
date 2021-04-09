@@ -1,4 +1,4 @@
-package JUC.collection;
+package collection;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

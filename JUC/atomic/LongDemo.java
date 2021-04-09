@@ -1,4 +1,4 @@
-package JUC.atomic;
+package atomic;
 
 import java.util.concurrent.atomic.AtomicLong;
 

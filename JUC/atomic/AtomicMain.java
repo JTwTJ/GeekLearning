@@ -1,5 +1,5 @@
 
-package JUC.atomic;
+package atomic;
 
 public class AtomicMain {
 

@@ -1,4 +1,3 @@
-package LEETCODE;
 
 /**
  * 对一个数开方并保留指定小数位

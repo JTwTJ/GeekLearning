@@ -1,4 +1,4 @@
-package JUC.common;
+package common;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;

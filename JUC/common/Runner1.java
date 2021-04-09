@@ -1,4 +1,4 @@
-package JUC.common;
+package common;
 
 public class Runner1 implements Runnable {
    

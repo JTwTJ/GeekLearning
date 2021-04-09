@@ -1,5 +1,5 @@
 
-package JUC.common;
+package common;
 
 import java.io.IOException;
 

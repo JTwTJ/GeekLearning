@@ -1,6 +1,4 @@
 
-package JUC.atomic;
-
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class AtomicCount {

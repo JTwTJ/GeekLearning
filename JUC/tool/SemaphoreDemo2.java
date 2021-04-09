@@ -1,4 +1,4 @@
-package JUC.tool;
+package tool;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

@@ -1,5 +1,5 @@
 
-package JUC.lock;
+package lock;
 
 public class Count3 {
 

@@ -1,4 +1,3 @@
-package JVM;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -20,7 +19,7 @@ public class GCLogAnalysis {
         int cacheSize = 2000;
         Object[] cachedGarbage = new Object[cacheSize];
         while (System.currentTimeMillis() < endMillis) {
-            Object garbage = generateGarbage(100*1024);
+            Object garbage = generateGarbage(100 * 1024);
             counter.increment();
             int randomIndex = random.nextInt(2 * cacheSize);
             if (randomIndex < cacheSize) {

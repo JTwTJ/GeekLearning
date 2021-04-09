@@ -1,4 +1,4 @@
-package JUC.collection;
+package collection;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;

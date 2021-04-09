@@ -1,5 +1,4 @@
-
-package JUC.atomic;
+package atomic;
 
 public class Count {
 

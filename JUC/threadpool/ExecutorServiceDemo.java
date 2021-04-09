@@ -1,5 +1,5 @@
 
-package JUC.threadpool;
+package threadpool;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;

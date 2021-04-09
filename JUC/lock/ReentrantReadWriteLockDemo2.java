@@ -1,5 +1,5 @@
 
-package JUC.lock;
+package lock;
 
 import java.util.HashMap;
 import java.util.Map;

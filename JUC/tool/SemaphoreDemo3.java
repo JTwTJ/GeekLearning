@@ -1,5 +1,5 @@
 
-package JUC.tool;
+package tool;
 
 import java.util.concurrent.Semaphore;
 

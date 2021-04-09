@@ -1,4 +1,4 @@
-package JUC.future;
+package future;
 
 import java.util.concurrent.CompletableFuture;
 

@@ -1,5 +1,5 @@
 
-package JUC.lock;
+package lock;
 
 public class ThreadA extends Thread {
     private Count3 count3;

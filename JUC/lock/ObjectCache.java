@@ -1,5 +1,5 @@
 
-package JUC.lock;
+package lock;
 
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Lock;

@@ -1,4 +1,4 @@
-package JUC.threadlocal;
+package threadlocal;
 
 public class ThreadLocalDemo {
     

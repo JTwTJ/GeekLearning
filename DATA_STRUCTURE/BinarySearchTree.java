@@ -1,4 +1,3 @@
-package DATA_STRUCTURE;
 
 /**
  * @author jiangwentao
@@ -58,7 +57,7 @@ public class BinarySearchTree<T extends Comparable> {
 
     public static void main(String[] args) {
         BinarySearchTree<Integer> searchTree = new BinarySearchTree<>();
-        for (int j =0; j < 10; j++) {
+        for (int j = 0; j < 10; j++) {
             searchTree.put(j);
         }
         System.out.println(searchTree);

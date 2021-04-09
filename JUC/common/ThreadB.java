@@ -1,4 +1,4 @@
-package JUC.common;
+package common;
 
 public class ThreadB implements Runnable {
 
