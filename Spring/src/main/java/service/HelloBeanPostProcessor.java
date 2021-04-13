@@ -5,6 +5,9 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author jiangwentao
+ */
 @Component
 public class HelloBeanPostProcessor implements BeanPostProcessor {
     @Override
