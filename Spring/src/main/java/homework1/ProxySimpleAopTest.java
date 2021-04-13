@@ -26,7 +26,9 @@ public class ProxySimpleAopTest {
                 proxyService.getClass().getInterfaces(), handler);
         proxy.eat();
         proxy.run();
-        System.out.println(proxy.getClass());//此proxy生成的是JDK动态代理的代理类 com.sun.proxy.$Proxy0
-        System.out.println(proxyService);//此proxy是实例化的类
+        //此proxy生成的是JDK动态代理的代理类 com.sun.proxy.$Proxy0
+        System.out.println(proxy.getClass());
+        //此proxy是实例化的类
+        System.out.println(proxyService);
     }
 }
