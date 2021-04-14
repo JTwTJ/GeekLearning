@@ -13,11 +13,16 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation('org.springframework.boot:spring-boot-starter')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    implementation('org.springframework.boot:spring-boot-starter-web')
 
-    implementation 'org.springframework.boot:spring-boot-starter-activemq'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    /*activemq*/
+    implementation('org.apache.activemq:activemq-pool:5.15.0')
+    implementation('org.springframework.boot:spring-boot-starter-activemq')
+    /*mongodb*/
+    implementation('org.springframework.boot:spring-boot-starter-data-mongodb')
+
 }
 
 test {
