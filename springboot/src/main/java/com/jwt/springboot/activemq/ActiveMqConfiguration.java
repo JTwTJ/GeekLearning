@@ -4,6 +4,8 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.jms.activemq.ActiveMQProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,20 +19,26 @@ import org.springframework.jms.core.JmsMessagingTemplate;
  * @detail activemq 配置类
  */
 @Configuration
-@EnableConfigurationProperties(ActiveMqProperties.class)
+@EnableConfigurationProperties(ActiveMQProperties.class)
 public class ActiveMqConfiguration {
 
+    @Value("${spring.activemq.queue-name}")
+    private String activeMQQueue;
+
+    @Value("${spring.activemq.topic-name}")
+    private String activeMQTopic;
+
     @Autowired
-    private ActiveMqProperties activeMqProperties;
+    private ActiveMQProperties activeMqProperties;
 
     @Bean(name = "queue")
     public ActiveMQQueue queue() {
-        return new ActiveMQQueue(activeMqProperties.getQueueName());
+        return new ActiveMQQueue(activeMQQueue);
     }
 
     @Bean(name = "topic")
     public ActiveMQTopic topic() {
-        return new ActiveMQTopic(activeMqProperties.getTopicName());
+        return new ActiveMQTopic(activeMQTopic);
     }
 
     @Bean
