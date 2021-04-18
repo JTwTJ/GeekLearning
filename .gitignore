@@ -29,3 +29,7 @@ target/
 build/
 
 .DS_Store
+/caches/
+/daemon/
+/native/
+/wrapper/
