@@ -66,7 +66,7 @@ public class BaseAlgorithm {
     }
 
     /**
-     * 插入排序
+     * 插入排序--倒序不够友好
      */
     private static Integer[] insertSort(Integer[] arr) {
         for (int i = 0; i < arr.length; i++) {
@@ -77,6 +77,32 @@ public class BaseAlgorithm {
                     arr[j - 1] = temp;
                 } else {
                     break;
+                }
+            }
+        }
+        return arr;
+    }
+
+    /**
+     * 希尔排序--缩小增量排序
+     * 插入排序的一种更高效的改进版本、不稳定排序算法
+     */
+    public static Integer[] shellSort(Integer[] arr) {
+        if (arr == null || arr.length <= 1) {
+            return arr;
+        }
+        //这里去最大增量为数组长度的一半好处：decresment直接就为分组数组中的右边界
+        for (int decresment = arr.length / 2; decresment > 0; decresment = decresment / 2) {
+            System.out.println("增量取值为：" + decresment);
+            for (int i = decresment; i < arr.length; i++) {
+                for (int j = i - decresment; j >= 0; j = j - decresment) {
+                    if (arr[j] > arr[j + decresment]) {
+                        int temp = arr[j];
+                        arr[j] = arr[j + decresment];
+                        arr[j + decresment] = temp;
+                    } else {
+                        break;
+                    }
                 }
             }
         }
@@ -128,16 +154,10 @@ public class BaseAlgorithm {
         quickSort(arr, left + 1, end);
     }
 
-    /**
-     * 希尔排序
-     */
-    public static void shellSort() {
-    }
-
     public static void main(String[] args) {
         //二分查找
         Integer[] sortArr = new Integer[]{1, 3, 5, 6, 8, 9, 16};
-        Integer integer = binarySearch(15, sortArr);
+        Integer integer = binarySearch(6, sortArr);
         System.out.println(integer);
 
         Integer[] arr = new Integer[]{9, 8, 7, 5, 4, 2, 6};
@@ -150,6 +170,9 @@ public class BaseAlgorithm {
         //插入排序
         Integer[] integers3 = insertSort(arr);
         System.out.println(Arrays.toString(integers3));
+        //希尔排序
+        Integer[] integers4 = shellSort(arr);
+        System.out.println(Arrays.toString(integers4));
         //快速排序
         quickSort(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
