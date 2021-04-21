@@ -6,6 +6,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 
 /**
+ * Spring Bean 初始化时添加BeanPostProcessor的前置处理与后置处理
  * @author jiangwentao
  */
 @Component

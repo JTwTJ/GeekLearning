@@ -38,7 +38,7 @@
     <bean id="aop1" class="service.Aop1" />
     
     <bean id="aop2" class="service.Aop2" />
-    <!--代理方式配置 CGLIB / JDK-->
+    <!--代理方式配置 CGLIB / JDK（默认使用）-->
     <!--<aop:aspectj-autoproxy proxy-target-class="true" />-->
     <!--<aop:aspectj-autoproxy  />-->
     
