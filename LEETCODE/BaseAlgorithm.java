@@ -4,6 +4,8 @@ import java.util.Arrays;
 /**
  * 常用算法
  *
+ * 排序算法参考链接： https://blog.csdn.net/weixin_41190227/article/details/86600821
+ *
  * @author jiangwentao
  * @date 2021/3/11
  */
@@ -35,6 +37,7 @@ public class BaseAlgorithm {
 
     /**
      * 冒泡排序
+     * 平均时间复杂度：O(n²)  最好情况：O(n) 最坏情况：O(n²) 空间复杂度：O(1) 稳定
      */
     private static Integer[] bubbleSort(Integer[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
@@ -51,6 +54,7 @@ public class BaseAlgorithm {
 
     /**
      * 选择排序
+     * 平均时间复杂度：O(n²)  最好情况：O(n²) 最坏情况：O(n²) 空间复杂度：O(1) 不稳定
      */
     private static Integer[] pickSort(Integer[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
@@ -67,6 +71,7 @@ public class BaseAlgorithm {
 
     /**
      * 插入排序--倒序不够友好
+     * 平均时间复杂度：O(n²)  最好情况：O(n) 最坏情况：O(n²) 空间复杂度：O(1) 稳定
      */
     private static Integer[] insertSort(Integer[] arr) {
         for (int i = 0; i < arr.length; i++) {
@@ -86,6 +91,7 @@ public class BaseAlgorithm {
     /**
      * 希尔排序--缩小增量排序
      * 插入排序的一种更高效的改进版本、不稳定排序算法
+     * 平均时间复杂度：O(nlogn)  最好情况：O(nlog2n) 最坏情况：O(nlog2n) 空间复杂度：O(1) 不稳定
      */
     public static Integer[] shellSort(Integer[] arr) {
         if (arr == null || arr.length <= 1) {
@@ -95,7 +101,7 @@ public class BaseAlgorithm {
         for (int decresment = arr.length / 2; decresment > 0; decresment = decresment / 2) {
             System.out.println("增量取值为：" + decresment);
             for (int i = decresment; i < arr.length; i++) {
-                for (int j = i - decresment; j >= 0; j = j - decresment) {
+                for (int j = i - decresment; j > 0; j = j - decresment) {
                     if (arr[j] > arr[j + decresment]) {
                         int temp = arr[j];
                         arr[j] = arr[j + decresment];
@@ -111,9 +117,9 @@ public class BaseAlgorithm {
 
     /**
      * 快速排序
+     * 平均时间复杂度：O(nlogn)  最好情况：O(nlogn) 最坏情况：O(n²) 空间复杂度：O(logn) 不稳定
      */
     private static void quickSort(Integer[] arr, int left, int right) {
-
         //如果左游标和右游标相等 或者 左游标大于右游标时 停止快排
         if (left >= right) {
             return;
@@ -154,13 +160,49 @@ public class BaseAlgorithm {
         quickSort(arr, left + 1, end);
     }
 
+    /**
+     * 归并排序
+     * 平均时间复杂度：O(nlogn)  最好情况：O(nlogn) 最坏情况：O(nlogn) 空间复杂度：O(n) 稳定
+     */
+    public static Integer[] mergeSort(Integer[] arr) {
+        if (arr.length < 2) {
+            return arr;
+        }
+        //将数组对半划分
+        int mid = arr.length / 2;
+        Integer[] leftArr = Arrays.copyOfRange(arr, 0, mid);
+        Integer[] rightArr = Arrays.copyOfRange(arr, mid, arr.length);
+        return merge(mergeSort(leftArr), mergeSort(rightArr));
+    }
+
+    private static Integer[] merge(Integer[] leftArr, Integer[] rightArr) {
+        Integer[] result = new Integer[leftArr.length + rightArr.length];
+        for (int index = 0, i = 0, j = 0; index < result.length; index++) {
+            //如果左数组取完了，那么直接遍历右数组取值
+            if (i >= leftArr.length) {
+                result[index] = rightArr[j++];
+            }
+            //如果右数组取完了，那么直接遍历左数组取值
+            else if (j >= rightArr.length) {
+                result[index] = leftArr[i++];
+            }
+            //都还没取完，那么左右数组的游标值进行比较，小的塞进result
+            else if (leftArr[i] > rightArr[j]) {
+                result[index] = rightArr[j++];
+            } else {
+                result[index] = leftArr[i++];
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         //二分查找
         Integer[] sortArr = new Integer[]{1, 3, 5, 6, 8, 9, 16};
         Integer integer = binarySearch(6, sortArr);
         System.out.println(integer);
 
-        Integer[] arr = new Integer[]{9, 8, 7, 5, 4, 2, 6};
+        Integer[] arr = new Integer[]{9, 8, 7, 5, 4, 22, 456, 11, 78, 54, 12, 45, 89, 34, 23, 11, 67, 112, 11, 9, 8, 7, 2};
         //冒泡排序
         Integer[] integers1 = bubbleSort(arr);
         System.out.println(Arrays.toString(integers1));
@@ -176,5 +218,8 @@ public class BaseAlgorithm {
         //快速排序
         quickSort(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
+        //归并排序
+        Integer[] integers5 = mergeSort(arr);
+        System.out.println(Arrays.toString(integers5));
     }
 }
