@@ -4,7 +4,7 @@ import java.util.Arrays;
 /**
  * 常用算法
  *
- * 排序算法参考链接： https://blog.csdn.net/weixin_41190227/article/details/86600821
+ * 排序算法参考链接： https://www.cnblogs.com/onepixel/articles/7674659.html
  *
  * @author jiangwentao
  * @date 2021/3/11
@@ -91,7 +91,7 @@ public class BaseAlgorithm {
     /**
      * 希尔排序--缩小增量排序
      * 插入排序的一种更高效的改进版本、不稳定排序算法
-     * 平均时间复杂度：O(nlogn)  最好情况：O(nlog2n) 最坏情况：O(nlog2n) 空间复杂度：O(1) 不稳定
+     * 平均时间复杂度：O(n^1.3)  最好情况：O(n) 最坏情况：O(n²) 空间复杂度：O(1) 不稳定
      */
     public static Integer[] shellSort(Integer[] arr) {
         if (arr == null || arr.length <= 1) {
@@ -117,7 +117,7 @@ public class BaseAlgorithm {
 
     /**
      * 快速排序
-     * 平均时间复杂度：O(nlogn)  最好情况：O(nlogn) 最坏情况：O(n²) 空间复杂度：O(logn) 不稳定
+     * 平均时间复杂度：O(nlog2n)  最好情况：O(nlog2n) 最坏情况：O(n²) 空间复杂度：O(logn) 不稳定
      */
     private static void quickSort(Integer[] arr, int left, int right) {
         //如果左游标和右游标相等 或者 左游标大于右游标时 停止快排
@@ -162,7 +162,7 @@ public class BaseAlgorithm {
 
     /**
      * 归并排序
-     * 平均时间复杂度：O(nlogn)  最好情况：O(nlogn) 最坏情况：O(nlogn) 空间复杂度：O(n) 稳定
+     * 平均时间复杂度：O(nlog2n)  最好情况：O(nlog2n) 最坏情况：O(nlog2n) 空间复杂度：O(n) 稳定
      */
     public static Integer[] mergeSort(Integer[] arr) {
         if (arr.length < 2) {
