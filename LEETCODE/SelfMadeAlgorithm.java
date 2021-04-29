@@ -14,28 +14,28 @@ public class SelfMadeAlgorithm {
     }
 
     //快速排序
-    private static void quickSort(int[] arr, int start, int end) {
+    private static void quickSort(int[] arr, int left, int right) {
 
-        if (start >= end) {
+        if (left >= right) {
             return;
         }
-        int left = start;
-        int right = end;
+        int start = left;
+        int end = right;
         int pivot = left;
         while (left < right) {
-            while ((left < right) && arr[left] <= arr[pivot]) {
-                left++;
-            }
-            if ((left < right) && arr[left] > arr[pivot]) {
-                swap(arr, left, pivot);
-                pivot = left;
-            }
             while ((left < right) && arr[right] >= arr[pivot]) {
                 right--;
             }
             if ((left < right) && arr[right] < arr[pivot]) {
                 swap(arr, right, pivot);
                 pivot = right;
+            }
+            while ((left < right) && arr[left] <= arr[pivot]) {
+                left++;
+            }
+            if ((left < right) && arr[left] > arr[pivot]) {
+                swap(arr, left, pivot);
+                pivot = left;
             }
             quickSort(arr, start, left - 1);
             quickSort(arr, left + 1, end);
