@@ -62,6 +62,10 @@ public class Solution1 {
                 finalResult = j * f + finalResult;
                 return;
             }
+            if ((tempResult2 * tempResult2) == x) {
+                finalResult = (j + 1) * f + finalResult;
+                return;
+            }
             //如果在区间之内直接向下一个进制递归
             if ((tempResult * tempResult) < x && x < (tempResult2 * tempResult2)) {
                 finalResult = j * f + finalResult;

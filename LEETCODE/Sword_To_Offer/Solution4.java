@@ -1,4 +1,4 @@
-package Sward_To_Offer;
+package Sword_To_Offer;
 
 import java.util.Stack;
 
@@ -28,11 +28,13 @@ public class Solution4 {
     public class ListNode {
         int val;
         ListNode next;
+
         ListNode(int x) {
             val = x;
         }
     }
 
+    //用栈
     public int[] reversePrint(ListNode head) {
 
         Stack<Integer> stack = new Stack<>();
@@ -47,5 +49,44 @@ public class Solution4 {
             result[i++] = stack.pop();
         }
         return result;
+    }
+
+    int[] res;
+    //这里的i是用来记录数组长度的
+    int i = 0;
+    int j = 0;
+    //递归+回溯
+    public int[] reversePrint1(ListNode head) {
+        resove(head);
+        return res;
+    }
+
+    private void resove(ListNode head) {
+        if (head == null) {
+            res = new int[i];
+            return;
+        }
+        i++;
+        resove(head.next);
+        res[j++] = head.val;
+    }
+
+    //双指针反转链表
+    public int[] reverseList2(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
+        while (cur != null) {
+            ListNode nxt = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = nxt;
+            i++;
+        }
+        res = new int[i];
+        while (pre != null) {
+            res[j++] = pre.val;
+            pre = pre.next;
+        }
+        return res;
     }
 }

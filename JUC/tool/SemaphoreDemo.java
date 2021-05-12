@@ -6,7 +6,7 @@ public class SemaphoreDemo {
     
     public static void main(String[] args) {
         int N = 20;            //工人数
-        Semaphore semaphore = new Semaphore(2); //机器数目
+        Semaphore semaphore = new Semaphore(5); //机器数目
         for (int i = 0; i < N; i++)
             new Worker(i, semaphore).start();
     }
@@ -22,7 +22,7 @@ public class SemaphoreDemo {
         
         @Override
         public void run() {
-            int n = 2;
+            int n = 3;
             try {
                 semaphore.acquire(n);  // 在子线程里控制资源占用
                 System.out.println("工人" + this.num + "占用"+ n + "个机器在生产...");
