@@ -3,7 +3,7 @@ import java.util.Arrays;
 /**
  * @author jiangwentao
  * @date 2021/4/27
- * @detail
+ * @detail 手写常规算法
  */
 public class SelfMadeAlgorithm {
 
@@ -11,6 +11,65 @@ public class SelfMadeAlgorithm {
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
+    }
+
+    //冒泡排序
+    public static int[] bubbleSort(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length - 1 - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    swap(arr, j, j + 1);
+                }
+            }
+        }
+        return arr;
+    }
+
+    //选择排序
+    public static int[] chooseSort(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i] > arr[j]) {
+                    swap(arr, i, j);
+                }
+            }
+        }
+        return arr;
+    }
+
+    //插入排序
+    public static int[] insertSort(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i; j > 0; j--) {
+                if (arr[j] < arr[j - 1]) {
+                    swap(arr, j, j - 1);
+                } else {
+                    break;
+                }
+            }
+        }
+        return arr;
+    }
+
+    //希尔排序
+    public static int[] shellSort(int[] arr) {
+
+        if (arr.length < 2) {
+            return arr;
+        }
+        for (int decrease = arr.length / 2; decrease >= 1; decrease /= 2) {
+            System.out.println("增量为：" + decrease);
+            for (int i = decrease; i < arr.length; i++) {
+                for (int j = i - decrease; j >= 0; j -= decrease) {
+                    if (arr[j] > arr[j + decrease]) {
+                        swap(arr, j, j + decrease);
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        return arr;
     }
 
     //快速排序
@@ -100,13 +159,23 @@ public class SelfMadeAlgorithm {
     }
 
     public static void main(String[] args) {
-
-        int[] arr = new int[]{923, 8, 7, 5, 4, 22, 456, 11, 78, 54, 12, 45, 89, 34, 23, 11, 67, 112, 11, 9, 8, 7, 2};
-//        int[] ints5 = Arrays.copyOf(arr, arr.length);
-//        quickSort(ints5, 0, arr.length - 1);
-//        System.out.println(Arrays.toString(ints5));
-//        int[] ints = mergeSort(Arrays.copyOf(arr, arr.length));
-//        System.out.println(Arrays.toString(ints));
+        int[] arr = new int[]{9, 8, 7, 5, 4, 22, 456, 11, 78, 54, 12, 45, 89, 34, 23, 11, 67, 112, 11, 9, 8, 7, 2};
+        //冒泡排序
+        int[] ints1 = bubbleSort(Arrays.copyOf(arr, arr.length));
+        System.out.println(Arrays.toString(ints1));
+        //选择排序
+        int[] ints2 = chooseSort(Arrays.copyOf(arr, arr.length));
+        System.out.println(Arrays.toString(ints2));
+        //插入排序
+        int[] ints3 = insertSort(Arrays.copyOf(arr, arr.length));
+        System.out.println(Arrays.toString(ints3));
+        //希尔排序
+        int[] ints4 = shellSort(Arrays.copyOf(arr, arr.length));
+        System.out.println(Arrays.toString(ints4));
+        //快速排序
+        int[] ints5 = Arrays.copyOf(arr, arr.length);
+        quickSort(ints5, 0, ints5.length);
+        System.out.println(Arrays.toString(ints5));
         int[] ints6 = Arrays.copyOf(arr, arr.length);
         heapSort(ints6);
         System.out.println(Arrays.toString(ints6));
