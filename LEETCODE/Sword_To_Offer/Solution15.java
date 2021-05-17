@@ -32,6 +32,7 @@ package Sword_To_Offer;
  */
 public class Solution15 {
 
+    //比较耗时不通过
     public double myPow(double x, int n) {
         double res = 1;
         if (n < 0) {
@@ -47,9 +48,30 @@ public class Solution15 {
         }
     }
 
+    //通过公式   x^n = x^
+    public double myPow1(double x, int n) {
+        if (x == 0) {
+            return 0;
+        }
+        long b = n;
+        if (n < 0) {
+            b = -b;
+            x = 1 / x;
+        }
+        double res = 1.0;
+        while (b > 0) {
+            if ((b & 1) == 1) {
+                res = res * x;
+            }
+            x = x * x;
+            b = b >> 1;
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         Solution15 solution15 = new Solution15();
-        double v = solution15.myPow(2.0, -3);
+        double v = solution15.myPow1(2.0, 12);
         System.out.println(v);
     }
 }
