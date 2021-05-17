@@ -51,7 +51,5 @@ public class Solution12 {
         Solution12 solution12 = new Solution12();
         int max = solution12.cuttingRope(12);
         System.out.println(max);
-//        double pow = Math.pow(2, 3);
-//        System.out.println(pow);
     }
 }
