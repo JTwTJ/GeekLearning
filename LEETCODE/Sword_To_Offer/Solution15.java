@@ -48,7 +48,7 @@ public class Solution15 {
         }
     }
 
-    //通过公式   x^n = x^
+    //通过公式
     public double myPow1(double x, int n) {
         if (x == 0) {
             return 0;
