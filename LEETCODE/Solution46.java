@@ -50,20 +50,27 @@ public class Solution46 {
             return;
         }
         //做选择
+        List<Integer> chooseList = new ArrayList<>();
         for (int i = 0; i < nums.length; i++) {
+            if (chooseList.contains(nums[i])) {
+                continue;
+            }
             if (track.contains(nums[i])) {
                 continue;
             }
+            chooseList.add(nums[i]);
             track.push(nums[i]);
             //backtrack
             dfs(nums, track);
+            //撤销选择
             track.pop();
+            chooseList.clear();
         }
     }
 
     public static void main(String[] args) {
         Solution46 solution46 = new Solution46();
-        int[] coins = {1, 2, 3};
+        int[] coins = {1, 5, 2};
         List<List<Integer>> permute = solution46.permute(coins);
         System.out.println(permute);
     }
