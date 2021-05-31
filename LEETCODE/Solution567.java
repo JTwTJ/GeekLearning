@@ -40,14 +40,43 @@ public class Solution567 {
         }
         int left = 0, right = 0, valid = 0;
         while (right < s2.length()) {
+            // c 是将移入窗口的字符
             char c = s2.charAt(right);
+            // 右移窗口
             right++;
+            // 进行窗口内数据的一系列更新
             if (need.containsKey(c)) {
-                window.put(c, window.put(c, 0) + 1);
+                window.put(c, window.getOrDefault(c, 0) + 1);
                 if (window.get(c).equals(need.get(c))) {
-
+                    valid++;
+                }
+            }
+            // 判断左侧窗口是否要收缩  当字符长度满足匹配长度时进行判断是否包含所有
+            while (right - left >= s1.length()) {
+                if (valid == need.size()) {
+                    return true;
+                }
+                // d 是将移出窗口的字符
+                char d = s2.charAt(left);
+                // 左移窗口
+                left++;
+                // 进行窗口内数据的一系列更新
+                if (need.containsKey(d)) {
+                    //如果正好该字符凑齐但又会被移除，则valid-1
+                    if (window.get(d).equals(need.get(d))) {
+                        valid--;
+                    }
+                    //窗口中的该字符数减一
+                    window.put(d, window.getOrDefault(d, 0) - 1);
                 }
             }
         }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        Solution567 solution567 = new Solution567();
+        boolean b = solution567.checkInclusion("hello", "ooolleoololeh");
+        System.out.println(b);
     }
 }
