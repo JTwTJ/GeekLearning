@@ -228,7 +228,7 @@ public class BaseAlgorithm {
     }
 
     /**
-     * 局部堆化
+     * 局部堆化-二叉堆下沉sink
      *
      * @param currentHeap       当前小堆
      * @param needToHeapifyNode 当前需要堆化的父节点
