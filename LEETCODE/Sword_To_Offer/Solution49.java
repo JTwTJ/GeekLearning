@@ -1,6 +1,7 @@
 package Sword_To_Offer;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 
 /**
  * @author jiangwentao
@@ -35,6 +36,9 @@ public class Solution49 {
 
     //暴力解法
     public int[] maxSlidingWindow(int[] nums, int k) {
+        if (nums.length == 0) {
+            return new int[0];
+        }
         int[] maxNums = new int[nums.length - k + 1];
         int end = k - 1;
         for (int i = 0; i <= nums.length - k; i++) {
@@ -52,6 +56,59 @@ public class Solution49 {
             }
         }
         return max;
+    }
+
+    //单调队列
+
+    class MonotonicQueue {
+
+        private LinkedList<Integer> queue = new LinkedList<>();
+
+        //队尾添加元素
+        void push(int n) {
+            //将前面小于自己的元素都删除
+            while (!queue.isEmpty() && queue.getLast() < n) {
+                queue.pollLast();
+            }
+            queue.addLast(n);
+        }
+
+        //返回当前队列中的最大元素
+        int max() {
+            //队头元素是最大元素
+            return queue.getFirst();
+        }
+
+        //队尾元素如果是n，删除它
+        void pop(int n) {
+            if (n == queue.getFirst()) {
+                queue.pollFirst();
+            }
+        }
+    }
+
+    public int[] maxSlidingWindow1(int[] nums, int k) {
+
+        if (nums.length == 0) {
+            return new int[0];
+        }
+        int[] res = new int[nums.length - k + 1];
+        MonotonicQueue window = new MonotonicQueue();
+        for (int i = 0; i < nums.length; i++) {
+            if (i < k - 1) {
+                //先把窗口的前k - 1 填满
+                window.push(nums[i]);
+            } else {
+                //窗口开始向前滑动
+                //移入新元素
+                window.push(nums[i]);
+                //将当前窗口中的最大元素计入结果
+                res[i - k + 1] = window.max();
+                //移除最后的队尾元素
+                window.pop(nums[i - k + 1]);
+            }
+        }
+        return res;
     }
 
     public static void main(String[] args) {
