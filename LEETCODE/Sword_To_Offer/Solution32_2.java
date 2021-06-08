@@ -60,6 +60,9 @@ public class Solution32_2 {
             List<Integer> temp = new ArrayList<>();
             for (int i = queue.size(); i > 0; i--) {
                 TreeNode cur = queue.poll();
+                if (cur == null) {
+                    continue;
+                }
                 temp.add(cur.val);
                 if (cur.left != null) {
                     queue.add(cur.left);
