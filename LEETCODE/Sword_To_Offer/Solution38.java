@@ -1,8 +1,6 @@
 package Sword_To_Offer;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author jiangwentao
@@ -31,18 +29,13 @@ import java.util.List;
  */
 public class Solution38 {
 
-    List<List<Character>> res = new ArrayList<>();
-    LinkedList<Character> path = new LinkedList<>();
+    Set<String> res = new HashSet<>();
+    private boolean[] visited;
     public String[] permutation(String s) {
         char[] chars = s.toCharArray();
-        dfs(chars);
-        String[] resStr = new String[res.size()];
-        int i = 0;
-        for (List<Character> list : res) {
-            resStr[i] = listToStr(list);
-            i++;
-        }
-        return resStr;
+        visited = new boolean[chars.length];
+        dfs(chars, new  StringBuilder());
+        return res.toArray(new String[0]);
     }
 
     private String listToStr(List<Character> list) {
@@ -52,29 +45,31 @@ public class Solution38 {
         return sb.toString();
     }
 
-    private void dfs(char[] chars) {
+    private void dfs(char[] chars, StringBuilder sb) {
 
         //base case
-        if (path.size() == chars.length) {
-            res.add(new ArrayList<>(path));
+        if (sb.length() == chars.length) {
+            res.add(sb.toString());
             return;
         }
 
         //选择列表
-        for (char aChar : chars) {
-            if (path.contains(aChar)) {
+        for (int i = 0; i < chars.length; i++) {
+            if (visited[i]) {
                 continue;
             }
             //做选择
-            path.add(aChar);
-            dfs(chars);
-            path.removeLast();
+            sb.append(chars[i]);
+            visited[i] = true;
+            dfs(chars, sb);
+            sb.deleteCharAt(sb.length() - 1);
+            visited[i] = false;
         }
     }
 
     public static void main(String[] args) {
         Solution38 solution38 = new Solution38();
-        String[] abcs = solution38.permutation("abc");
-        System.out.println(abcs);
+        String[] abcs = solution38.permutation("aab");
+        System.out.println(Arrays.toString(abcs));
     }
 }
