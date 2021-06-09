@@ -1,7 +1,5 @@
 package Sword_To_Offer;
 
-import java.util.LinkedList;
-
 /**
  * Created with IntelliJ IDEA.
  * User: msi-
@@ -62,8 +60,14 @@ public class Solution55_2 {
         if (root == null) {
             return true;
         }
-        return Math.abs(depth(root.left) - depth(root.right)) <= 1 && isBalanced(root.left) && isBalanced(root.right);
+        //     当前节点是否平衡
+        return Math.abs(depth(root.left) - depth(root.right)) <= 1
+                //当前节点的左节点是否平衡
+                && isBalanced(root.left)
+                //当前节点的右节点是否平衡
+                && isBalanced(root.right);
     }
+
     private int depth(TreeNode root) {
         //base case
         if (root == null) {
