@@ -46,7 +46,6 @@ public class Solution51 {
             Arrays.fill(chars, '.');
         }
         dfs(checkerBoard, 0);
-        System.out.println(checkerBoard[0][0] == '\u0000');
         return res;
     }
 
@@ -109,7 +108,7 @@ public class Solution51 {
 
     public static void main(String[] args) {
         Solution51 solution51 = new Solution51();
-        List<List<String>> lists = solution51.solveNQueens(4);
+        List<List<String>> lists = solution51.solveNQueens(2);
         System.out.println(lists);
     }
 }
