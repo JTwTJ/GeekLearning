@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * @author jiangwentao
@@ -25,43 +24,109 @@ import java.util.List;
  */
 public class Solution698 {
 
-    boolean[] visited;
-    int count = 0;
-    List<List<Integer>> path = new ArrayList<>();
+    int[] bucket;
+    int target;
+
+    //以数字为视角装入桶
     public boolean canPartitionKSubsets(int[] nums, int k) {
         int sum = 0;
-        for(int num : nums) {
+        for (int num : nums) {
             sum += num;
         }
         if (sum % k != 0) {
             return false;
         }
-        visited = new boolean[k];
-        return dfs(nums, target, k);
+        bucket = new int[k];
+        target = sum / k;
+        Arrays.sort(nums);
+        int i = 0, j = nums.length - 1;
+        while (i < j) {
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+            i++;
+            j--;
+        }
+        return backtrack(nums, 0);
     }
 
-    private boolean dfs(int[] nums, int target, int k) {
+    private boolean backtrack(int[] nums, int index) {
+
         //base case
-        if (path.size() == k) {
+        if (index == nums.length) {
+            for (int sum : bucket) {
+                if (sum != target) {
+                    return false;
+                }
+            }
             return true;
         }
+        if (nums[index] > target) {
+            return false;
+        }
+
         //选择列表
-        List<Integer> collect = new ArrayList<>();
-        for (int i = 0; i < nums.length; i++) {
-            //判断是否跳过选择
+        for (int i = 0; i < bucket.length; i++) {
+            //跳过条件
+            if (bucket[i] + nums[index] > target) {
+                continue;
+            }
+            //做选择
+            bucket[i] += nums[index];
+            if (backtrack(nums, index + 1)) {
+                return true;
+            }
+            //撤销选择
+            bucket[i] -= nums[index];
+        }
+        return false;
+    }
+
+    //以桶的视角
+    private boolean[] visited;
+    public boolean canPartitionKSubsets2(int[] nums, int k) {
+
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+        if (sum % k != 0) {
+            return false;
+        }
+        visited = new boolean[nums.length];
+        target = sum / k;
+        return backtrack(nums, k, 0, 0);
+    }
+
+    private boolean backtrack(int[] nums, int k, int bucketSum, int start) {
+
+        //base case
+        if (k == 0) {
+            return true;
+        }
+        //如果这个桶装满了就递归装下一个桶
+        if (bucketSum == target) {
+            return backtrack(nums, k - 1, 0, 0);
+        }
+        //选择列表
+        for (int i = start; i < nums.length; i++) {
+            //剪枝
             if (visited[i]) {
                 continue;
             }
-            if (count + nums[i] > target) {
+            if (bucketSum + nums[i] > target) {
                 continue;
             }
-            if(count + nums[i] == target) {
-                visited[i] = true;
-                collect.add(nums[i]);
-            }
             //做选择
-            visited
-            dfs(nums, target, k);
+            bucketSum += nums[i];
+            visited[i] = true;
+            if (backtrack(nums, k, bucketSum, i + 1)){
+                return true;
+            }
+            //撤销选择
+            bucketSum -= nums[i];
+            visited[i] = false;
         }
+        return false;
     }
 }

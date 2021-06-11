@@ -50,21 +50,16 @@ public class Solution46 {
             return;
         }
         //做选择
-        List<Integer> chooseList = new ArrayList<>();
         for (int i = 0; i < nums.length; i++) {
-            if (chooseList.contains(nums[i])) {
-                continue;
-            }
+
             if (track.contains(nums[i])) {
                 continue;
             }
-            chooseList.add(nums[i]);
             track.push(nums[i]);
             //backtrack
             dfs(nums, track);
             //撤销选择
             track.pop();
-            chooseList.clear();
         }
     }
 
