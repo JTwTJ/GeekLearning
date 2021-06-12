@@ -27,51 +27,40 @@ import java.util.*;
  */
 public class Solution22 {
 
-    Set<String> res = new HashSet<>();
-    HashMap<Character, Integer> dic = new HashMap<>(2);
+    List<String> res = new ArrayList<>();
     public List<String> generateParenthesis(int n) {
-
-        char[] resources = new char[n * 2];
-        for (int i = 0; i < n * 2; i ++) {
-            if (i % 2 == 0) {
-                resources[i] = '(';
-            } else {
-                resources[i] = ')';
-            }
-        }
-        dic.put('(', n);
-        dic.put(')', n);
-        backtrack(resources, new StringBuilder());
+        backtrack(n, n, new StringBuilder());
         return new ArrayList<>(res);
     }
 
-    private void backtrack(char[] resources, StringBuilder sb) {
-        if (sb.length() == resources.length) {
+    private void backtrack(int left, int right, StringBuilder sb) {
+
+        //base case
+        if (left == 0 && right == 0) {
             res.add(sb.toString());
             return;
         }
-        //选择列表
-        for (int i = 0; i < resources.length; i++) {
-            char curChar = i % 2 == 0 ? '(' : ')';
-            if (dic.get(curChar) == 0) {
-                continue;
-            }
-            //做选择
-            dic.put(curChar, dic.get(curChar) - 1);
-            sb.append(curChar);
-            if (i <= resources.length / 2 && dic.get('(') > dic.get(')')) {
-                dic.put(curChar, dic.get(curChar) + 1);
-                continue;
-            }
-            backtrack(resources, sb);
-            dic.put(curChar, dic.get(curChar) + 1);
-            sb.deleteCharAt(sb.length() - 1);
+        //left 大于 right不合法
+        if (left > right) {
+            return;
         }
+        //left 小于 0 不合法
+        if (left < 0) {
+            return;
+        }
+        //尝试放一个左括号
+        sb.append('(');
+        backtrack(left - 1, right, sb);
+        sb.deleteCharAt(sb.length() - 1);
+        //尝试放一个右括号
+        sb.append(')');
+        backtrack(left, right - 1, sb);
+        sb.deleteCharAt(sb.length() - 1);
     }
 
     public static void main(String[] args) {
         Solution22 solution22 = new Solution22();
-        List<String> strings = solution22.generateParenthesis(3);
+        List<String> strings = solution22.generateParenthesis(8);
         System.out.println(strings);
     }
 }
