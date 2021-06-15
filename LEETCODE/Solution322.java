@@ -48,22 +48,38 @@ public class Solution322 {
         //解题思想 分段函数思想 F(x) = (逻辑操作)x  x为变量 不同区间不同函数
         //1、确定状态（确定变量 amount）----很明显改题变量应该为amount amount变化函数也会跟着变化
         //2、定义dp数组（函数F(amount)）：要凑出金额n，至少需要dp(n)个硬币
+        //3、明确 base case
+        //4、明确选择
+        //4-1、分段函数不同区间的求值函数
+        //4-2、做选择、找出当前最优解
+
+
+
+        //0 到 amount 长度为 amount + 1
         int[] dp = new int[amount + 1];
+        //因为amount全拿coin为1的用了amount个coin所以这里初始化值的时候用amount+1
         Arrays.fill(dp, amount + 1);
-        //base case
+        //定义base case 分段区间函数       f(amount) = 0 amount = 0
         dp[0] = 0;
-        //3、明确选择
-        //3-1、分段函数不同区间的求值函数
-        //3-2、做选择、找出当前最优解
-        for (int i = 0; i <= dp.length; i++) {
+        //遍历每个子问题-----------当amount为 i时求最少使用硬币数
+        for (int i = 0; i < dp.length; i++) {
             //内层for在求所有子问题+1的最小值
-            for (int j = 0; j < coins.length; j++) {
+            //遍历每个可能的选择---------------每个硬币
+            for (int coin : coins) {
                 //子问题无解，跳过
-                if (coins[j] < i) {
-                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+                if (i - coin < 0) {
+                    continue;
                 }
+                //求当前amount下是用最少的硬币数
+                dp[i] = Math.min(dp[i], dp[i - coin] + 1);
             }
         }
         return dp[amount] > amount ? -1 : dp[amount];
+    }
+
+    public static void main(String[] args) {
+        Solution322 solution322 = new Solution322();
+        int count = solution322.coinChange(new int[]{1, 2, 5}, 9);
+        System.out.println(count);
     }
 }
