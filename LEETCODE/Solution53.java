@@ -54,10 +54,17 @@ public class Solution53 {
         int res = dp_0;
         // 状态转移方程
         for (int i = 1; i < n; i++) {
+            //dp定义为以该位置结尾的数组（必须包含该位置）的最大子数组，不是该数组的最大子数组
             dp_1 = Math.max(nums[i], nums[i] + dp_0);
             dp_0 = dp_1;
             res = Math.max(res, dp_1);
         }
         return res;
+    }
+
+    public static void main(String[] args) {
+        Solution53 solution53 = new Solution53();
+        int i = solution53.maxSubArray(new int[]{-3, 4, -1, 2, -6});
+        System.out.println(i);
     }
 }

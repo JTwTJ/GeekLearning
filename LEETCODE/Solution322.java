@@ -44,6 +44,7 @@ import java.util.Arrays;
  */
 public class Solution322 {
 
+    //自底向上迭代解法
     public int coinChange(int[] coins, int amount) {
         //解题思想 分段函数思想 F(x) = (逻辑操作)x  x为变量 不同区间不同函数
         //1、确定状态（确定变量 amount）----很明显改题变量应该为amount amount变化函数也会跟着变化
@@ -70,11 +71,45 @@ public class Solution322 {
                 if (i - coin < 0) {
                     continue;
                 }
-                //求当前amount下是用最少的硬币数
+                //状态转移=----求当前amount下用最少的硬币数
                 dp[i] = Math.min(dp[i], dp[i - coin] + 1);
             }
         }
         return dp[amount] > amount ? -1 : dp[amount];
+    }
+
+    //递归+重叠子问题
+    int memo[];
+    public int coinChange1(int[] coins, int amount) {
+
+        //添加备忘录
+        memo = new int[amount + 1];
+        Arrays.fill(memo, Integer.MAX_VALUE);
+        return dp(coins, amount);
+    }
+    public int dp(int[] coins, int amount) {
+        //base case
+        if (amount == 0) {
+            return 0;
+        }
+        if (amount < 0) {
+            return -1;
+        }
+        if (memo[amount] != Integer.MAX_VALUE) {
+            return memo[amount];
+        }
+        int res = Integer.MAX_VALUE;
+        for (int coin : coins) {
+            //计算子问题的结果
+            int subProblem = dp(coins, amount - coin);
+            //子问题无解则跳过 如 11  用 5->5->5
+            if (subProblem == -1) {
+                continue;
+            }
+            res = Math.min(res, subProblem + 1);
+        }
+        memo[amount] = res == Integer.MAX_VALUE ? -1 : res;
+        return memo[amount];
     }
 
     public static void main(String[] args) {
