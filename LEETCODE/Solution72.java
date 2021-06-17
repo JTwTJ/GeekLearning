@@ -58,12 +58,12 @@ public class Solution72 {
     private int dp(String word1, String word2, int len1, int len2) {
         //base case
         //word1自顶向下已经遍历完，后面的最少操作数为word2的剩余的长度
-        if (len1 < 0) {
+        if (len1 < -1) {
             return len2 + 1;
         }
 
         //word2自顶向下已经遍历完，后面的最少操作数为word1的剩余的长度
-        if (len2 < 0) {
+        if (len2 < -1) {
             return len1 + 1;
         }
         //备忘录中存在这直接取，不去递归
