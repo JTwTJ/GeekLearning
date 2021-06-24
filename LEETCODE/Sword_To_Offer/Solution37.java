@@ -99,7 +99,8 @@ public class Solution37 {
         Solution37 solution37 = new Solution37();
         TreeNode root = new TreeNode(5, new TreeNode(4,
                 new TreeNode(11, new TreeNode(7, null, null), new TreeNode(2, null, null)), null),
-                new TreeNode(8, new TreeNode(13, null, null), new TreeNode(4, new TreeNode(5, null, null), new TreeNode(1, null, null))));
+                new TreeNode(8, new TreeNode(13, null, null),
+                        new TreeNode(4, new TreeNode(5, null, null), new TreeNode(1, null, null))));
         String serialize = solution37.serialize(root);
         System.out.println(serialize);
         TreeNode rootDes = solution37.deserialize(serialize);
