@@ -180,4 +180,35 @@ public class SelfMadeAlgorithm {
         heapSort(ints6);
         System.out.println(Arrays.toString(ints6));
     }
+
+    public void heapSort1(int[] nums) {
+        for (int i = nums.length; i > 0; i++) {
+            buildMaxHeap1(nums, i);
+            swap(nums, 0, i -1);
+        }
+    }
+
+    private void buildMaxHeap1(int[] nums, int length) {
+
+        for (int i = (length - 1) / 2; i >= 0; i--) {
+            heapify1(nums, i, length);
+        }
+    }
+
+    private void heapify1(int[] nums, int currentNode, int length) {
+
+        int leftChi = currentNode * 2 + 1;
+        int rightChi = currentNode * 2 + 2;
+        int max = currentNode;
+        if (nums[max] < nums[leftChi]) {
+            max = leftChi;
+        }
+        if (nums[max] < nums[rightChi]) {
+            max = rightChi;
+        }
+        if (max != currentNode) {
+            swap(nums, max, currentNode);
+            heapify1(nums, max, length);
+        }
+    }
 }
