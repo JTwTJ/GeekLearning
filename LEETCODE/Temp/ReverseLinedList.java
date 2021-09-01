@@ -26,4 +26,15 @@ public class ReverseLinedList {
         head.next = null;
         return last;
     }
+
+    private Node reverse(Node head) {
+        Node pre = null, cur = head, nxt = head;
+        while (cur != null) {
+            nxt = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = nxt;
+        }
+        return pre;
+    }
 }
