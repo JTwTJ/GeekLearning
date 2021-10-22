@@ -12,7 +12,7 @@ public class Test {
         TwoWayAdaptee adaptee = new AdapteeRealize();
         TwoWayTarget target = new TwoWayAdapter(adaptee);
         target.targetRequest();
-        System.out.println("-----------------");
+        System.out.println("------------------");
         System.out.println("适配器通过双向适配器访问目标");
         target = new TargetRealize();
         adaptee = new TwoWayAdapter(target);
